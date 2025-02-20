@@ -140,5 +140,5 @@ This project is licensed under the **MIT License**. Feel free to use, modify, an
 
 ## Demo 🎮
 
-Check out the live demo here: 
+Check out the live demo here: https://anshul5911.github.io/Weather_API_website/
 
