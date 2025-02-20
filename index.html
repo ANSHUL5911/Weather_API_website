@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <link rel="icon" href="Weather app.png" type="image/icon type">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=search" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <h1 class="navbar-logo">Weather App</h1>
+            <ul class="navbar-menu">
+                <!-- <li><a href="#" data-page="home">Home</a></li>
+                <li><a href="#" data-page="about">About</a></li>
+                <li><a href="#" data-page="contact">Contact</a></li> -->
+                <!-- Add Refresh Button -->
+                <li>
+                    <a href="#" id="refresh-button">
+                        <i class="fas fa-sync-alt"></i> <!-- Font Awesome refresh icon -->
+                    </a>
+                </li>
+                <!-- Add Settings Icon -->
+                <li>
+                    <a href="#" id="settings-button">
+                        <i class="fas fa-cog"></i> <!-- Font Awesome settings icon -->
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Settings Modal -->
+    <!-- Settings Modal -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Settings</h2>
+            <form id="settings-form">
+                <label for="unit">Temperature Unit:</label>
+                <select id="unit">
+                    <option value="C">Celsius (°C)</option>
+                    <option value="F">Fahrenheit (°F)</option>
+                </select>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <main class="main-container">
+
+
+        <header class="input-container">
+            <input class="city-input" placeholder="Search City" type="text">
+            <button class="search-btn">
+                <span class="material-symbols-outlined">
+                    search
+                </span>
+            </button>
+        </header>
+
+
+        <section class="weather-info" style="display: none;">
+            <div class="location-date-container">
+                <div class="location">
+                    <i class="fa-solid fa-location-dot locatei"></i>
+                    <h4 class="country-txt">India</h4>
+                </div>
+                <h5 class="current-date-txt regular-txt">Fri, 27 Dec</h5>
+            </div>
+
+            <div class="weather-summary-container">
+                <img src="assets/weather/clouds.svg" class="weather-summary-img">
+                <div class="weather-summary-info">
+                    <h1 class="temp-txt">29 °C</h1>
+                    <h3 class="condition-txt regular-txt">Clouds</h3>
+                    <h3>°C to°F</h3>
+                    
+                    <!-- <button id="toggle-temp-unit" class="toggle-button">Switch to Fahrenheit</button> -->
+                </div>
+            </div>
+
+
+            <div class="weather-conditions-container">
+                <div class="condition-item">
+                    <i class="fa-solid fa-droplet locatei cond"></i>
+                    <div class="condition-info">
+                        <h5 class="regular-txt">Humidity</h5>
+                        <h5 class="humidity-value-txt">55%</h5>
+                    </div>
+                </div>
+                <div class="condition-item">
+                    <i class="fa-solid fa-wind locatei cond"></i>
+                    <div class="condition-info">
+                        <h5 class="regular-txt">Wind Speed</h5>
+                        <h5 class="wind-value-txt">2 M/s</h5>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="forecast-items-container">
+                <div class="forecast-item">
+                    <h5 class="forecast-item-date regular-txt">05 Jan</h5>
+                    <img src="assets/weather/thunderstorm.svg" class="forecast-item-img">
+                    <h5 class="forecast-item-temp">29 °C</h5>
+                </div>
+                <div class="forecast-item">
+                    <h5 class="forecast-item-date regular-txt">05 Jan</h5>
+                    <img src="assets/weather/thunderstorm.svg" class="forecast-item-img">
+                    <h5 class="forecast-item-temp">29 °C</h5>
+                </div>
+                <div class="forecast-item">
+                    <h5 class="forecast-item-date regular-txt">05 Jan</h5>
+                    <img src="assets/weather/thunderstorm.svg" class="forecast-item-img">
+                    <h5 class="forecast-item-temp">29 °C</h5>
+                </div>
+                <div class="forecast-item">
+                    <h5 class="forecast-item-date regular-txt">05 Jan</h5>
+                    <img src="assets/weather/thunderstorm.svg" class="forecast-item-img">
+                    <h5 class="forecast-item-temp">29 °C</h5>
+                </div>
+            </div>
+
+        </section>
+
+
+        <section class="search-city section-message">
+            <img src="assets/message/search-city.png">
+            <div>
+                <h1 class="sea">Search City</h1>
+                <h4 class="regular-txt">
+                    Find out the weather conditions of any city
+                </h4>
+            </div>
+        </section>
+
+        <section class="not-found section-message" style="display: none;">
+            <img src="assets/message/not-found.png">
+            <div>
+                <h1 class="sea">Search City</h1>
+                <h4 class="regular-txt">
+                    Find out the weather conditions of any city
+                </h4>
+            </div>
+        </section>
+
+        <!-- <section id="about-page" class="page" style="display:none;">
+            <h2>About Weather App</h2>
+            <p>
+                The Weather App is a simple and intuitive tool to check the current weather and forecasts for any city around the world. 
+                It uses the OpenWeatherMap API to provide accurate and up-to-date weather information.
+            </p>
+            <p>
+                <strong>Technologies Used:</strong> HTML, CSS, JavaScript, OpenWeatherMap API, Font Awesome, Google Fonts.
+            </p>
+            <p>
+                <strong>Developed by:</strong> Anshul Singh Jadon
+            </p>
+            <p>
+                <strong>Version:</strong> 1.0.0
+            </p>
+        </section>
+
+        <section id="home-page" class="page" style="display: none;">
+            <h2>Welcome to Weather App</h2>
+            <p>
+                Get the latest weather updates for any city around the world. Simply enter the city name in the search bar and click the search button to get started.
+            </p>
+            <p>
+                <strong>Features:</strong>
+                <ul>
+                    <li>Current weather conditions</li>
+                    <li>Temperature, humidity, and wind speed</li>
+                    <li>5-day weather forecast</li>
+                </ul>
+            </p>
+            <p>
+                <strong>Instructions:</strong>
+                <ul>
+                    <li>Enter the city name in the search bar</li>
+                    <li>Click the search button to view the weather information</li>
+                    <li>Use the refresh button to update the weather data</li>
+                    <li>Click the settings button to change the temperature unit</li>
+                </ul>
+            </p>
+        </section>
+        <section id="contact-page" class="page" style="display: none;">
+            <h2>Contact Us</h2>
+            <p>
+                Have questions or feedback? Feel free to reach out to us!
+            </p>
+            <form id="contact-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+                
+                <button type="submit">Send Message</button>
+            </form>
+            <p>
+                <strong>Email:</strong> the.anshul.sj@gmail.com
+            </p>
+            <p>
+                <strong>Follow us:</strong>
+                <a href="https://www.linkedin.com/in/anshulsinghjadon/" target="_blank">LinkedIn</a> | 
+                <a href="https://github.com/ANSHUL5911" target="_blank">GitHub</a>
+            </p>
+        </section> -->
+    </main>
+
+</body>
+
+</html>
